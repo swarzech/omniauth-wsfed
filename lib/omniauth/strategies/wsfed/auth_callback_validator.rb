@@ -43,10 +43,10 @@ module OmniAuth
         end
 
         def validate_claims!
-          Rails.logger.warn auth_callback.raw_callback
-          if auth_callback.claims.nil? || auth_callback.claims.empty?
-            raise OmniAuth::Strategies::WSFed::ValidationError.new(NO_CLAIMS)
-          end
+          # Rails.logger.warn auth_callback.raw_callback
+          # if auth_callback.claims.nil? || auth_callback.claims.empty?
+          #   raise OmniAuth::Strategies::WSFed::ValidationError.new(NO_CLAIMS)
+          # end
         end
 
         def validate_uid!
