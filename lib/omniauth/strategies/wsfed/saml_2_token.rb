@@ -19,6 +19,7 @@ module OmniAuth
         end
 
         def claims
+          Rails.logger.warn "THIS IS IN SAML2"
           stmt_element = REXML::XPath.first(document, '//Assertion/AttributeStatement')
 
           return {} if stmt_element.nil?
