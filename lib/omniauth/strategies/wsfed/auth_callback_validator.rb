@@ -28,8 +28,6 @@ module OmniAuth
         end
 
         def validate_issuer!
-          Rails.logger.warn auth_callback.issuer
-          Rails.logger.warn wsfed_settings[:issuer_name]
           raise OmniAuth::Strategies::WSFed::ValidationError.new(ISSUER_MISMATCH) unless
               auth_callback.issuer == wsfed_settings[:issuer_name]
         end
@@ -45,6 +43,7 @@ module OmniAuth
         end
 
         def validate_claims!
+          Rails.logger.war auth_callback.to_json
           if auth_callback.claims.nil? || auth_callback.claims.empty?
             raise OmniAuth::Strategies::WSFed::ValidationError.new(NO_CLAIMS)
           end
