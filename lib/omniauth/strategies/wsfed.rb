@@ -29,6 +29,8 @@ module OmniAuth
 
       # Parse SAML token...
       def callback_phase
+        Rails.logger.warn request.params['wresult']
+        
         begin
           validate_callback_params(@request)
 
