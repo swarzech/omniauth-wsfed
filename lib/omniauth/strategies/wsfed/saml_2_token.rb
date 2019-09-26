@@ -19,14 +19,13 @@ module OmniAuth
         end
 
         def claims
-          Rails.logger.warn "THIS IS IN SAML2"
           stmt_element = REXML::XPath.first(document, '//Assertion/AttributeStatement')
 
           return {} if stmt_element.nil?
 
           {}.tap do |result|
             stmt_element.elements.each do |attr_element|
-              name  = attr_element.attributes['Name']
+              name = attr_element.attributes['Name']
 
               if attr_element.elements.count > 1
                 value = []
@@ -35,7 +34,7 @@ module OmniAuth
                 value = Utils.element_text(attr_element.elements.first).to_s.lstrip.rstrip
               end
 
-              result[name] = value
+              result[name.gsub("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/", "").gsub("http://schemas.microsoft.com/identity/", "").gsub("http://schemas.microsoft.com/claims/", "")] = value
             end
           end
         end
