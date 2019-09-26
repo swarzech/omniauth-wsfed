@@ -34,7 +34,7 @@ module OmniAuth
                 value = Utils.element_text(attr_element.elements.first).to_s.lstrip.rstrip
               end
 
-              result[name.gsub("https?://.*/claims/", "")] = value
+              result[name.gsub(/https?:\/\/.*\/claims\//, "")] = value
             end
           end
         end
