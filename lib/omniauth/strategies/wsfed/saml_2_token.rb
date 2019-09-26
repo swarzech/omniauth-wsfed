@@ -34,7 +34,7 @@ module OmniAuth
                 value = Utils.element_text(attr_element.elements.first).to_s.lstrip.rstrip
               end
 
-              result[name.gsub("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/", "").gsub("http://schemas.microsoft.com/identity/", "").gsub("http://schemas.microsoft.com/claims/", "")] = value
+              result[name.gsub("https?://.*/claims/", "")] = value
             end
           end
         end
