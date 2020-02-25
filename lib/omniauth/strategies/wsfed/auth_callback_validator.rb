@@ -33,8 +33,6 @@ module OmniAuth
         end
 
         def validate_audience!
-          Rails.logger.warn "&&&&&&&&&&&&&&&&&&"
-          Rails.logger.warn auth_callback.audience
           raise OmniAuth::Strategies::WSFed::ValidationError.new(AUDIENCE_MISMATCH) unless
               auth_callback.audience == wsfed_settings[:realm]
         end
