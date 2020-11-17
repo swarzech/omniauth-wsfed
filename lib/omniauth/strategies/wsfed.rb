@@ -31,7 +31,7 @@ module OmniAuth
       def callback_phase
         Rails.logger.warn request.params['wresult']
 
-        # begin
+        begin
           validate_callback_params(@request)
 
           wsfed_callback = request.params['wresult']
@@ -49,11 +49,11 @@ module OmniAuth
 
           super
 
-        # rescue ArgumentError => e
-        #   fail!(:invalid_response, e)
-        # rescue OmniAuth::Strategies::WSFed::ValidationError => e
-        #   fail!(:invalid_authn_token, e)
-        # end
+        rescue ArgumentError => e
+          fail!(:invalid_response, e)
+        rescue OmniAuth::Strategies::WSFed::ValidationError => e
+          fail!(:invalid_authn_token, e)
+        end
 
       end
 
